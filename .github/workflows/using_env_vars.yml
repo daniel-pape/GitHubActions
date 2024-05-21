@@ -1,0 +1,25 @@
+name: "Using env vars"
+
+on:
+  workflow_dispatch:
+
+env:
+  COOKIE_MONSTER: "🍪 OmNomNom 🍪"
+  SECRET_SAUCE: "🥫 TopSecretRecipe 🔍"
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+
+    env:
+      COOKIE_MONSTER: "🍪 Need More Cookies!!!1! 🍪"
+
+    steps:
+      - name: "Print the environment variables"
+        run: |
+          echo "$COOKIE_MONSTER"
+          echo "SECRET_SAUCE: ${{env.SECRET_SAUCE}}"
+          echo "SQUIRREL_POWER: ${{env.SQUIRREL_POWER}}"
+        env:
+          SQUIRREL_POWER: "🐿️ NuttyStrength 💪"
+          SECRET_SAUCE: "🥫OverwrittenTopSecretRecipe 🔍"
