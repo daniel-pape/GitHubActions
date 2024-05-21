@@ -15,11 +15,15 @@ jobs:
       COOKIE_MONSTER: "🍪 Need More Cookies!!!1! 🍪"
 
     steps:
+      - name: "Set UNICORN_MAGIC"
+        run: |
+          echo "UNICORN_MAGIC='🦄 SparklyRainbow 🌈'" >> $GITHUB_ENV
       - name: "Print the environment variables"
         run: |
           echo "$COOKIE_MONSTER"
           echo "SECRET_SAUCE: ${{env.SECRET_SAUCE}}"
           echo "SQUIRREL_POWER: ${{env.SQUIRREL_POWER}}"
+          echo "UNICORN_MAGIC: ${{ env.UNICORN_MAGIC }}"
         env:
           SQUIRREL_POWER: "🐿️ NuttyStrength 💪"
           SECRET_SAUCE: "🥫OverwrittenTopSecretRecipe 🔍"
