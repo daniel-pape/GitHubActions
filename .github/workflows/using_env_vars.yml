@@ -2,13 +2,24 @@ name: "Using env vars"
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: choice
+        required: true
+        options:
+          - dev
+          - qa
+          - prod
+
 
 env:
   COOKIE_MONSTER: "🍪 OmNomNom 🍪"
   SECRET_SAUCE: "🥫 TopSecretRecipe 🔍"
 
 jobs:
-  first_job:
+  print_job:
+    name: "Print Env Vars Job"
     runs-on: ubuntu-latest
 
     env:
@@ -27,3 +38,12 @@ jobs:
         env:
           SQUIRREL_POWER: "🐿️ NuttyStrength 💪"
           SECRET_SAUCE: "🥫OverwrittenTopSecretRecipe 🔍"
+
+  deploy:
+    name: "Deploy"
+    needs: print_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Deploy to environment"
+        run: |
+          echo "Deploy to environment: ${{github.event.inputs.environment}}"
