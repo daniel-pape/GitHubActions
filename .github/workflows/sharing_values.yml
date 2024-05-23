@@ -14,7 +14,7 @@ jobs:
         id: previous_step
         run: |
           echo "Performing a random task"
-          echo "::set-output name=var1_name::GitHubActionsAreCool"
+          echo "var1_name=GitHubActionsAreCool" >> $GITHUB_OUTPUT
           echo "::set-output name=var2_date::(date + '%Y-%m-%d-%H-%M')"
 
       - name: Get the value
